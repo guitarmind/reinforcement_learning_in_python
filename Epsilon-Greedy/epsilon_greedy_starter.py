@@ -7,6 +7,7 @@ from builtins import range
 # sudo pip install -U future
 
 
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -65,7 +66,7 @@ def experiment():
     # update the distribution for the bandit whose arm we just pulled
     bandits[j].update(x)
 
-    
+
 
   # print mean estimates for each bandit
   for b in bandits:
@@ -83,6 +84,7 @@ def experiment():
   win_rates = cumulative_rewards / (np.arange(NUM_TRIALS) + 1)
   plt.plot(win_rates)
   plt.plot(np.ones(NUM_TRIALS)*np.max(BANDIT_PROBABILITIES))
+  plt.savefig(f"{sys.argv[0]}_{NUM_TRIALS}.png")
   plt.show()
 
 if __name__ == "__main__":
